@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, component } from 'react';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+import './App.css';
+import NavBar from './components/layout/NavBar';
+import Dashboard from './components/layout/Dashboard';
+import MyPokemonList from './components/layout/MyPokemonList';
+import Pokemon from './components/pokemon/Pokemon';
+import PokemonContextProvider from './components/contexts/PokemonContexts';
+
+
+class App extends Component {
+  render() {
+    return ( 
+    <Router>
+      <div className="App">
+        <NavBar/>
+          <div className="container"> 
+            <Switch>
+              <PokemonContextProvider>
+              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/pokemon/:pokemonIndex" component={Pokemon} />
+              <Route exact path="/MyPokemonList" component={MyPokemonList} />
+              </PokemonContextProvider>
+            </Switch>
+          </div>
+      </div>
+    </Router>
+    );
+  }
 }
 
 export default App;
