@@ -10,6 +10,7 @@ import Dashboard from './components/layout/Dashboard';
 import MyPokemonList from './components/layout/MyPokemonList';
 import Pokemon from './components/pokemon/Pokemon';
 import PokemonContextProvider from './components/contexts/PokemonContexts';
+import TotalPokemon from './components/pokemon/TotalPokemon';
 
 
 class App extends Component {
@@ -17,16 +18,19 @@ class App extends Component {
     return ( 
     <Router>
       <div className="App">
+      <PokemonContextProvider>
         <NavBar/>
           <div className="container"> 
+          <TotalPokemon/>
             <Switch>
-              <PokemonContextProvider>
+             
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/pokemon/:pokemonIndex" component={Pokemon} />
               <Route exact path="/MyPokemonList" component={MyPokemonList} />
-              </PokemonContextProvider>
+              
             </Switch>
           </div>
+          </PokemonContextProvider>
       </div>
     </Router>
     );
